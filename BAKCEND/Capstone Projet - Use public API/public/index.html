@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search </title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Search historical events by date</h1>
+    <form action="/events" method="POST">
+      <input type="number" name="month" placeholder="Month" min="1" max="12" required>
+      <input type="number" name="day" placeholder="Day" min="1" max="31" required>
+      <button type="submit">Search</button>
+    </form>
+  </div>
+</body>
+</html>
+

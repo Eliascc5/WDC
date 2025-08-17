@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search Results</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="results-container">
+    <h1>Results :</h1>
+  
+    <% if (error) { %>
+      <p style="color:red"><%= error %></p>
+    <% } %>
+
+    <% if (events) { %>
+      <h2>Events found:</h2>
+      <ul>
+        <% events.forEach(event => { %>
+          <li><strong><%= event.year %>:</strong> <%= event.description %></li>
+        <% }) %>
+      </ul>
+    <% } %>
+
+    <button onclick="window.history.back()">Go back</button>
+  </div>
+</body>
+</html>
