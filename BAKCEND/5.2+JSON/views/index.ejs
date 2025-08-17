@@ -7,7 +7,7 @@
 </head>
 
 <body>
-  <h1>Nutrition plans</h1>
+  <h1>Menus</h1>
 
   <form action="/recipe" method="POST" class="buttons">
     <button type="submit" value="chicken" name="choice">🍗</button>
@@ -16,15 +16,45 @@
   </form>
   <div id="recipeContainer" class="hidden">
 
-    <!-- If no recipe yet, show: -->
-    <h2>Pick your favourite taco ingredient 👆</h2>
-    <!-- Else, show the recipe name e.g. <h2>Recipe name</h2>-->
+    <% if (recipe === 0 || recipe === undefined) { %>
+      <h2>Pick your favourite taco ingredient 👆</h2>
+    <% } else { %>
+      <h2>Recipe name : <%= recipe.name %></h2>
+      <% } %>
+    
 
     <h3>Ingredients:</h3>
     <ul id="ingredientsList">
-      <li>Protein name, protein preparation</li>
-      <li>Salsa name</li>
-      <li>Every other topping</li>
+      <% if (recipe.name === "Chicken Taco") { %>
+        <h4>Protein and preparation :</h4>
+        <li><%= recipe.ingredients.protein.name %>, <%= recipe.ingredients.protein.preparation %> </li>
+        <h4>Sauce / salsa :</h4>
+        <li><%= recipe.ingredients.salsa.name %>, <%= recipe.ingredients.salsa.spiciness %> </li>
+        <h4>Toppings options:</h4>
+          <% for(let i = 0; i < recipe.ingredients.toppings.length; i++) { %>
+            <li><%= recipe.ingredients.toppings[i].name %>, <%= recipe.ingredients.toppings[i].quantity %> </li>
+          <% } %>    
+      <% } else if (recipe.name === "Beef Taco") { %>
+        <h4>Protein and preparation :</h4>
+        <li><%= recipe.ingredients.protein.name %>, <%= recipe.ingredients.protein.preparation %> </li>
+        <h4>Sauce / salsa :</h4>
+        <li><%= recipe.ingredients.salsa.name %>, <%= recipe.ingredients.salsa.spiciness %> </li>
+        <h4>Toppings options:</h4>
+          <% for(let i = 0; i < recipe.ingredients.toppings.length; i++) { %>
+            <li><%= recipe.ingredients.toppings[i].name %>, <%= recipe.ingredients.toppings[i].quantity %> </li>
+          <% } %>
+      <% } else if (recipe.name === "Fish Taco") { %>
+        <h4>Protein and preparation :</h4>
+        <li><%= recipe.ingredients.protein.name %>, <%= recipe.ingredients.protein.preparation %> </li>
+        <h4>Sauce / salsa :</h4>
+        <li><%= recipe.ingredients.salsa.name %>, <%= recipe.ingredients.salsa.spiciness %> </li>
+        <h4>Toppings options:</h4>
+          <% for(let i = 0; i < recipe.ingredients.toppings.length; i++) { %>
+            <li><%= recipe.ingredients.toppings[i].name %>, <%= recipe.ingredients.toppings[i].quantity %> </li>
+          <% } %>
+      <% } else { %>
+        <h4>Recipe not found</h4>
+      <% } %>   
     </ul>
 
 
