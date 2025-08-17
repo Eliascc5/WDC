@@ -35,6 +35,35 @@ app.post("/", async (req, res) => {
   // Step 3: If you get a 404 error (resource not found) from the API request.
   // Pass an error to the index.ejs to tell the user:
   // "No activities that match your criteria."
+  try {
+    const { type, participants } = req.body;
+
+    // Make the API request with the type and participants as query parameters.
+    // It could be done by using Query param 
+    /*     
+    const response = await axios.get(
+      `https://bored-api.appbrewery.com/filter?type=${type}&participants=${participants}`);
+    */
+    const response = await axios.get("https://bored-api.appbrewery.com/filter", {
+      params: { type, participants },
+    });
+    const result = response.data;
+
+    // If the result is empty, we will handle it in the catch block.
+    if (result.length === 0) {
+      throw new Error("No activities that match your criteria.");
+    }
+
+    // Render the index.ejs file with a random activity from the filtered results.
+    const randomActivity = result[Math.floor(Math.random() * result.length)];
+    res.render("index.ejs", { data: randomActivity });
+  } catch (error) {
+    console.error("Failed to make request:", error.message);
+    res.render("index.ejs", {
+      error: error.message,
+    });
+  }
+
 });
 
 app.listen(port, () => {
