@@ -34,7 +34,7 @@ app.post("/events", async (req, res) => {
 
   } catch (error) {
     console.error("Failed to make request:", error.message);
-    res.render("events.ejs", { events: null, error: "No se pudieron obtener los eventos." });
+    res.render("events.ejs", { events: null, error: "Events  could not be obtained." });
   }
 });
 
