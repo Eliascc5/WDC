@@ -23,7 +23,7 @@ db.query("SELECT * FROM flags", (err, res) => {
     quiz = res.rows;
   }
   db.end();
-});
+});|
 
 let totalCorrect = 0;
 
